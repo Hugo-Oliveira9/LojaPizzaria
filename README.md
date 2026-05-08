@@ -1,41 +1,185 @@
 Hugo Oliveira
-DSM 3 Semestre
-Orientador Vinicius Heltai
-
-🍕 Sistema de Montagem de Pizza (Padrão Bridge)
-
-Este projeto demonstra o uso do padrão de projeto Bridge em JavaScript, separando a estrutura da pizza da forma como ela é montada.
+DSM 3º Semestre
+Orientador: Vinicius Heltai
+🍕 Sistema de Montagem de Pizza
+Aplicação dos padrões Bridge e Adapter em JavaScript
+Este projeto demonstra a utilização dos padrões de projeto Bridge e Adapter em JavaScript, organizando a estrutura de montagem de pizzas de forma desacoplada e flexível.
 
 📌 Ideia principal
-
 O sistema permite combinar:
 
-Tamanho da pizza (Brotinho, Tradicional, Grande)
-Montagem da pizza (borda + sabores)
 
-💡 Exemplos de saída
-Pizza Grande -> Borda: Catupiry | Sabores: Calabresa, Frango, Mussarela
-Pizza Brotinho -> Borda: Sem borda | Sabores: Chocolate, Morango, Leite condensado
-Pizza Tradicional -> Borda: Cheddar | Sabores: Portuguesa, 4 Queijos, Peperone
+Tamanho da pizza
 
-📚 Conceito aplicado
-Bridge (Ponte): separa a abstração da implementação, permitindo que ambas evoluam independentemente.
+
+Brotinho
+
+
+Tradicional
+
+
+Grande
+
+
+
+
+com:
+
+
+Estrutura de montagem
+
+
+borda
+
+
+sabores
+
+
+
+
+Além disso, os sabores podem vir de um serviço externo em formato diferente, sendo convertidos através do padrão Adapter.
+
+📚 Padrões de Projeto Aplicados
+🔹 Bridge (Ponte)
+O padrão Bridge separa a abstração da implementação, permitindo que ambas evoluam independentemente.
+Neste projeto:
+Abstração
+As classes de pizza:
+
+
+Pizza
+
+
+PizzaBrotinho
+
+
+PizzaTradicional
+
+
+PizzaGrande
+
+
+são responsáveis apenas pela definição do tamanho da pizza.
+Implementação
+A classe:
+
+
+MontadorPizza
+
+
+é responsável pela montagem da pizza:
+
+
+definição da borda
+
+
+adição dos sabores
+
+
+criação da estrutura final
+
+
+Com isso, o tamanho da pizza fica desacoplado da forma como ela é montada.
+
+🔹 Adapter
+O padrão Adapter é utilizado para adaptar dados vindos de um sistema externo para o formato esperado pela aplicação.
+Serviço Externo
+A classe:
+
+
+ServicoExternoSabores
+
+
+retorna os sabores no formato:
+[  { sabor: "Calabresa" },  { sabor: "Frango" }]
+Adapter
+A classe:
+
+
+AdaptadorSabores
+
+
+converte os objetos em uma lista simples de strings:
+[  "Calabresa",  "Frango"]
+Isso permite que o restante do sistema utilize os sabores sem precisar conhecer o formato original do serviço externo.
+
+🧱 Estrutura do Código
+🔹 Serviço Externo
+Responsável por fornecer sabores em formato diferente.
+ServicoExternoSabores
+
+🔹 Adaptador
+Responsável por converter os dados externos para o formato utilizado pelo sistema.
+AdaptadorSabores
+
+🔹 MontadorPizza
+Responsável pela implementação da montagem da pizza.
+Funções:
+
+
+definir borda
+
+
+adicionar sabores
+
+
+validar quantidade máxima de sabores
+
+
+
+🔹 Pizza (Abstração)
+Classe base das pizzas.
 
 🔹 Tipos de Pizza
 PizzaBrotinho
+
+
+permite 1 sabor
+
+
 PizzaTradicional
+
+
+permite 2 sabores
+
+
 PizzaGrande
 
-Cada uma define apenas o tamanho.
 
-🔹 Pizza (Abstração)
+permite 3 sabores
 
-Define o tamanho da pizza e usa um montador.
 
-🧱 Estrutura do código
-🔹 MontadorPizza (Implementação)
 
-Responsável por definir:
+💡 Exemplos de saída
+Pizza Grande | Borda: Catupiry | Sabores: Calabresa, Frango, MussarelaPizza Brotinho | Borda: Sem borda | Sabores: CalabresaPizza Tradicional | Borda: Cheddar | Sabores: Calabresa, Frango
 
-Tipo de borda
-Sabores da pizza
+🎯 Objetivo do Projeto
+Demonstrar na prática:
+
+
+separação de responsabilidades
+
+
+desacoplamento entre classes
+
+
+reutilização de código
+
+
+aplicação dos padrões:
+
+
+Bridge
+
+
+Adapter
+
+
+
+
+
+🚀 Tecnologias utilizadas
+
+
+JavaScript (Node.js)
+
